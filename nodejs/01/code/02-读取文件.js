@@ -8,22 +8,24 @@
 // 1. 使用require方法加载fs核心模块
 var fs = require('fs');
 
-// 2. 读取文件
-//    第一个参数就是要读取的文件路径
-//    第二个参数是一个回调函数
-//      error
-//          如果读取失败 error 就是错误对象
-//          如果读取成功 error 就是 null
-//      data
-//          如果读取成功 data 就是读取到的数据
-//          如果读取失败 error 就是错误对象
-//      即
-//      成功
-//          data 数据
-//          error null
-//      失败
-//          data undefined
-//          error 错误对象
+/*
+2. 读取文件
+   第一个参数就是要读取的文件路径
+   第二个参数是一个回调函数
+     error
+         如果读取失败 error 就是错误对象
+         如果读取成功 error 就是 null
+     data
+         如果读取成功 data 就是读取到的数据
+         如果读取失败 error 就是错误对象
+     即
+     成功
+         data 数据
+         error null
+     失败
+         data undefined
+         error 错误对象
+*/
 
 fs.readFile('./data/hello.txt',function(error,data){
     if(error){
