@@ -12,7 +12,7 @@ server.on('request',function(request,response){
     //http://127.0.0.1:3000/a   /a
     //http://127.0.0.1:3000/foo/b   /foo/b
     console.log('收到客户端的请求了,请求路径是:'+request.url);
-
+    console.log("请求我的客户端的ip地址和端口号",request.socket.remoteAddress,request.socket.remotePort);
     // response.end("hello nodejs");
 
     //由于现在的服务器很弱 无论什么请求 只能响应 hello nodejs
