@@ -14,7 +14,8 @@ var fs = require('fs');
          文件写入失败
          error 就是错误对象
  */
-fs.writeFile('./data/out.md','大家好 我是Node.js', function(error){
+fs.writeFile('./data/out.md','大家好 我是Node.js', { flag: 'a' }, (error) => { //'a' 打开文件用于追加
+    //写入完成后执行
     if(error){
         console.log('写入文件失败\n',error);
     }

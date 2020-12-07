@@ -75,9 +75,7 @@ module.exports = {
             filename:'css/main.css'
         }),
         //压缩css
-        new OptimizeCssAssetsWebpackPlugin({
-
-        })
+        new OptimizeCssAssetsWebpackPlugin()
     ],
     mode: 'development'
 }

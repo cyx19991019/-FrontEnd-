@@ -27,7 +27,7 @@ var fs = require('fs');
          error 错误对象
 */
 
-fs.readFile('./data/hello.txt',function(error,data){
+fs.readFile('./data/hello.txt', (error,data) => {
     if(error){
         console.log('读取文件失败\n',error);
     }
