@@ -77,5 +77,13 @@ module.exports = {
         //压缩css
         new OptimizeCssAssetsWebpackPlugin()
     ],
-    mode: 'development'
+    mode: 'development',
+    devServer:{
+        contentBase:resolve(__dirname,'build'),
+        open:true,
+        compress:true,
+        inline:true,
+        historyApiFallback:true,
+        port:5000
+    }
 }
