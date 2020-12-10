@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/prop-types.js"> </script>
+    <script type="text/javascript" src="../js/babel.js"> </script>
+    <script type="text/babel">
+
+        
+        class Index extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.showInput = this.showInput.bind(this);
+                this.handleBlur = this.handleBlur.bind(this);
+                this.myRef = React.createRef();
+            }
+
+            showInput () {
+                const input = this.refs.content;//ref第一种用法
+                alert(input.value);
+                alert(this.inputs.value);//ref第二种用法
+                alert(this.myRef.current.value+'1');//ref第三种用法
+            }
+
+            handleBlur (event) {
+                alert(event.target.value);
+            }
+
+            render() {
+                return (
+                    <div>
+                        <input type={'text'} ref={this.myRef}></input>&nbsp;&nbsp;
+                        <input type={'text'} ref={'content'}></input>&nbsp;&nbsp;
+                        <input type={'text'} ref={(inputData) => this.inputs = inputData}></input>&nbsp;&nbsp;
+                        <button onClick={this.showInput}>提示输入</button>&nbsp;&nbsp;
+                        <input type={'text'} onBlur={this.handleBlur} placeholder='失去焦点提示内容' ></input>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Index />, document.getElementById('test'));
+        
+
+    </script>
+</body>
+</html>

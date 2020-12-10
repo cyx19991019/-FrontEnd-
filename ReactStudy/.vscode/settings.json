@@ -1,0 +1,11 @@
+{
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "debug.javascript.terminalOptions": {
+    
+    },
+    "files.associations": {
+        "*.js": "html",
+        "*.vue":"html"
+    },
+    "emmet.triggerExpansionOnTab": true
+}

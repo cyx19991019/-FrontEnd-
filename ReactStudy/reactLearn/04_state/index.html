@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='index'></div>
+
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.js"> </script>
+    <script type="text/babel">
+    
+        class Like extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    isLike:false
+                }
+                //将新增方法中的this强制绑定组件对象
+                this.handleClick = this.handleClick.bind(this);
+            }
+
+            //新增加方法：内部this默认不是组件对象，而是undefined
+            handleClick(){
+                console.log(this);
+                const islike = !this.state.isLike
+                this.setState({
+                    isLike:islike
+                })
+            }
+
+            //重写组件类
+            render() {
+                const {isLike} = this.state;
+                return ( //.bind(this) 效率低 每一次执行重新bind
+                    <h2 onClick={this.handleClick}>{isLike ? '喜欢' : '不喜欢'}</h2>
+                )
+            }
+
+        }
+
+        ReactDOM.render(<Like />, document.getElementById('index'));
+    </script>
+</body>
+</html>
