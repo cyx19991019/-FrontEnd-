@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/prop-types.js"> </script>
+    <script type="text/javascript" src="../js/babel.js"> </script>
+    
+    <script type="text/babel">
+    
+        class Life extends React.Component {
+
+            constructor(){
+                super();
+                this.state = {
+                    opacity:1
+                }
+                this.distroyComponent = this.distroyComponent.bind(this);
+            }
+
+            distroyComponent () {
+                console.log('unmountComponentAtNode');
+                //从DOM元素中移除已挂载的React组件，清除它的事件处理器和state
+                ReactDOM.unmountComponentAtNode(document.getElementById('test'));            
+            }
+            
+            componentWillMount() {
+                console.log('componentWillMount');
+            }
+
+            componentWillUpdate () {
+                console.log('componentWillUpdate');
+            }
+
+            componentDidUpdate () {
+                console.log('componentDidUpdate');
+            }
+
+            componentDidMount () {
+                console.log('componentDidMount');
+                //启动循环定时器
+                // setInterval (function () {
+                //     let {opacity} = this.state;
+                //     opacity -= 0.1;
+                //     if(opacity <= 0){
+                //         opacity = 1;
+                //     }
+                //     this.setState({
+                //         opacity:opacity
+                //     })
+                // }.bind(this), 200)
+
+                this.intervalid =  setInterval ( (() => {
+                    console.log('定时器执行了');
+                    let {opacity} = this.state;
+                    opacity -= 0.1;
+                    if(opacity <= 0){
+                        opacity = 1;
+                    }
+                    this.setState({
+                        opacity:opacity
+                    })
+                }).bind(this), 200)
+            }
+            //componentDidMount之后执行的
+            componentWillUnmount () {
+                console.log('componentWillUnmount');
+                //清理定时器
+                clearInterval(this.intervalid);
+            }
+
+            render() {
+                console.log('render');
+                const {opacity} = this.state;
+                return (
+                    <div>
+                        <h2 style={{opacity:opacity}} >{this.props.msg}</h2>
+                        <button onClick={this.distroyComponent} >不活了</button>
+                    </div>
+                );
+            }
+
+        }
+        
+        ReactDOM.render(<Life msg={'React太难了'} />, document.getElementById('test'));
+    </script>
+</body>
+</html>

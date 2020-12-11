@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/prop-types.js"> </script>
+    <script type="text/javascript" src="../js/babel.js"> </script>
+    
+    <script type="text/babel">
+    
+        class Life extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    date: new Date()
+                }
+            }
+
+            componentDidMount () {
+                setInterval( () => {
+                    this.setState({
+                        date: new Date()
+                    })
+                }, 1000)
+            }
+
+            render() {
+                return (
+                    <div>
+                        <p>Hello, 
+                            <input type="text" placeholder='Your name here' />!&nbsp;
+                            <span>It is {this.state.date.toTimeString()}</span>
+                        </p>
+                        
+                    </div>
+                );
+            }
+
+        }
+        
+        ReactDOM.render(<Life />, document.getElementById('test'));
+    </script>
+</body>
+</html>

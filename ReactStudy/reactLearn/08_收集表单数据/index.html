@@ -14,6 +14,48 @@
     <script type="text/javascript" src="../js/babel.js"> </script>
     
     <script type="text/babel">
+
+        class LoginForm extends React.Component {
+
+            constructor(){
+                super();
+                this.state = {
+                    pwd:''
+                }
+                this.handleSubmit = this.handleSubmit.bind(this);
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange (event) {
+                //读取输入的值  更新pwd状态
+                const pwd = event.target.value;
+                this.setState({
+                    pwd:pwd
+                })
+            }
+
+            handleSubmit (event) {
+                const name = this.nameInput.value;
+                const {pwd} = this.state;
+                alert(`准备提交的用户名为${name},密码为${pwd}`);
+                //阻止事件的默认行为
+                event.preventDefault();
+            }
+
+            render() {
+                return (
+                    <form action="/test" onSubmit={this.handleSubmit}>
+                        用户名：<input type="text" ref={(inputData) => this.nameInput = inputData} />
+                        &nbsp;密码：<input type="password" value={this.state.pwd} onChange={this.handleChange} />
+                        <input type="submit" value='登录' />
+                    </form>
+                        
+                    
+                );
+            }
+        }
+        ReactDOM.render(<LoginForm />, document.getElementById('test'));
+
     </script>
 </body>
 </html>
